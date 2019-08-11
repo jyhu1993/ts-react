@@ -19,7 +19,8 @@ module.exports = {
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "react",
+        "react-hooks"
     ],
     "rules": {
         'indent': [
@@ -39,6 +40,8 @@ module.exports = {
             }
         ],
         'react/jsx-indent': ['error', 2],
-        'react/jsx-indent-props': ['error', 2]
+        'react/jsx-indent-props': ['error', 2],
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn"
     }
 };

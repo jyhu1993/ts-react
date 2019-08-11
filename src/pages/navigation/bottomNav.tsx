@@ -3,24 +3,24 @@ import style from './bottomNav.module.scss';
 
 interface BottomNavProps {
   currentIndex: number;
-  handleChangeCurrentIndex: Function;
+  setCurrentIndex: Function;
 }
 const BottomNav = (props: BottomNavProps) => {
-  const { currentIndex, handleChangeCurrentIndex } = props;
+  const { currentIndex, setCurrentIndex } = props;
   return (
     <div className={style.bottomNav}>
       <div
         className={currentIndex === 0 ? `${style.item} ${style.activeItem}` : style.item}
-        onClick={() => handleChangeCurrentIndex('计时')}
+        onClick={() => setCurrentIndex(0)}
       >
-        <i className="iconfont icon-jishi" />
+        <i className={`iconfont icon-jishi ${style.icon}`} />
         <p className={style.title}>计时</p>
       </div>
       <div
         className={currentIndex === 1 ? `${style.item} ${style.activeItem}` : style.item}
-        onClick={() => handleChangeCurrentIndex('统计')}
+        onClick={() => setCurrentIndex(1)}
       >
-        <i className="iconfont icon-tongji" />
+        <i className={`iconfont icon-tongji ${style.icon}`} />
         <p className={style.title}>统计</p>
       </div>
     </div>

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import BottomNav from './navigation/bottomNav';
 import Task from './timer/task';
+import Statistics from './statistics/index';
+import Timing from './timer/timing';
 import style from './index.module.scss';
 
 const Index: React.FC = () => {
@@ -11,22 +13,31 @@ const Index: React.FC = () => {
     docEle.style.fontSize = 20 * (deviceWidth / 640) + 'px';
   }
 
-  // 设置当前索引
+  // 设置当前导航索引
   const [currentIndex, setCurrentIndex] = useState(0);
-  const handleChangeCurrentIndex: (btn: string) => void = function(btn: string): void {
-    if (btn === '计时') {
-      setCurrentIndex(0);
-    } else {
-      setCurrentIndex(1);
-    }
-  };
   const bottomNavProps = {
     currentIndex,
-    handleChangeCurrentIndex,
+    setCurrentIndex,
   };
+
+  // 设置当前任务索引
+  const [currentTask, setCurrentTask] = useState('工作');
+  // 是否正在计时
+  const [isTiming, setTimingState] = useState(false);
+  const taskProps = {
+    currentTask,
+    setCurrentTask,
+    setTimingState,
+  };
+  const timingProps = {
+    setTimingState,
+  };
+  const TimerPage: React.ReactNode = isTiming ? <Timing {...timingProps} /> : <Task {...taskProps} />;
   return (
     <div className={style.app}>
-      <Task />
+      {
+        currentIndex === 0 ? TimerPage : <Statistics />
+      }
       <BottomNav {...bottomNavProps} />
     </div>
   );
