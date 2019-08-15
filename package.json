@@ -8,6 +8,7 @@
     "@types/node": "12.7.1",
     "@types/react": "16.8.25",
     "@types/react-dom": "16.8.5",
+    "ansi-styles": "^3.2.1",
     "echarts": "^4.2.1",
     "node-sass": "^4.12.0",
     "react": "^16.8.6",
@@ -41,6 +42,8 @@
     "@typescript-eslint/parser": "^1.13.0",
     "eslint-config-alloy": "^2.0.5",
     "eslint-plugin-react": "^7.14.3",
-    "eslint-plugin-react-hooks": "^1.7.0"
+    "eslint-plugin-react-hooks": "^1.7.0",
+    "mockjs": "^1.0.1-beta3",
+    "@types/mockjs": "^1.0.2"
   }
 }

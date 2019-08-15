@@ -1,32 +1,34 @@
+import { mock } from 'mockjs';
+
 interface Item {
-  type: string;
-  count: number;
+  name: string;
+  value: number;
 }
 const todayData: Item[] = [
-  {
-    type: '工作',
-    count: 15,
-  },
-  {
-    type: '学习',
-    count: 23,
-  },
-  {
-    type: '思考',
-    count: 5,
-  },
-  {
-    type: '写作',
-    count: 3,
-  },
-  {
-    type: '运动',
-    count: 2,
-  },
-  {
-    type: '阅读',
-    count: 10,
-  },
+  mock({
+    name: '工作',
+    'value|1-100': 100
+  }),
+  mock({
+    name: '学习',
+    'value|1-100': 100
+  }),
+  mock({
+    name: '思考',
+    'value|1-100': 100
+  }),
+  mock({
+    name: '写作',
+    'value|1-100': 100
+  }),
+  mock({
+    name: '运动',
+    'value|1-100': 100
+  }),
+  mock({
+    name: '阅读',
+    'value|1-100': 100
+  })
 ];
 
 export default todayData;
