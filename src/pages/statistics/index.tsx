@@ -4,7 +4,6 @@ import style from './index.module.scss';
 import todayData from '../../mock/todayData';
 import weekData from '../../mock/weekData';
 
-console.log(weekData);
 const list: number[] = todayData.map((item) => {
   return item.value;
 });
@@ -19,7 +18,9 @@ const Statistics = () => {
     todayChart.setOption({
       legend: {
         orient: 'horizontal',
-        itemWidth: 14,
+        itemWidth: 12,
+        itemHeight: 12,
+        itemGap: 8,
         bottom: 15,
         data: ['工作', '学习', '思考', '写作', '运动', '阅读']
       },
@@ -53,7 +54,89 @@ const Statistics = () => {
     });
   };
   const createBarChart = () => {
-    let weekChart = echarts.init(document.getElementById('weekMountNode') as HTMLDivElement);
+    let weekChart: any = echarts.init(document.getElementById('weekMountNode') as HTMLDivElement);
+    weekChart.on('click', function(params: any) {
+      const currentDataIndex = params.dataIndex;
+      weekChart.setOption({
+        xAxis: {
+          type: 'category',
+          data: weekData.date,
+          axisLine: {
+            lineStyle: {
+              color: '#c5c2c2',
+            }
+          },
+          axisTick: {
+            show: false,
+          },
+          axisLabel: {
+            interval: 0,
+            formatter: function (value: any, index: number) {
+              if (currentDataIndex === index) {
+                return `{highlight|${value}}`;
+              } else {
+                return value;
+              }
+            },
+            rich: {
+              highlight: {
+                color: 'black'
+              }
+            }
+          },
+        },
+        yAxis: {
+          show: false,
+        },
+        grid: {
+          left: 0,
+          right: 0,
+          bottom: 30
+        },
+        series: [{
+          data: weekData.value,
+          type: 'bar',
+          barWidth: 10,
+          label: {
+            show: false,
+            position: 'top',
+            emphasis: {
+              show: true,
+              color: '#b40113',
+            }
+          },
+          markLine: {
+            symbol: 'none',
+            label: {
+              show: false
+            },
+            data: [
+              { type: 'average', name: '平均值' }
+            ]
+          },
+          itemStyle: {
+            normal: {
+              color: {
+                type: 'linear',
+                x: 0,
+                y: 0,
+                x2: 0,
+                y2: 1,
+                colorStops: [
+                  {
+                    offset: 0, color: '#b40113'
+                  },
+                  {
+                    offset: 1, color: '#ff0000'
+                  }
+                ]
+              },
+              barBorderRadius: 4,
+            }
+          }
+        }]
+      });
+    });
     weekChart.setOption({
       xAxis: {
         type: 'category',
@@ -67,11 +150,16 @@ const Statistics = () => {
           show: false,
         },
         axisLabel: {
-          interval: 0
+          interval: 0,
         },
       },
       yAxis: {
         show: false
+      },
+      grid: {
+        left: 0,
+        right: 0,
+        bottom: 30
       },
       series: [{
         data: weekData.value,
@@ -81,7 +169,37 @@ const Statistics = () => {
           show: false,
           position: 'top',
           emphasis: {
-            show: true
+            show: true,
+            color: '#b40113',
+          }
+        },
+        markLine: {
+          symbol: 'none',
+          label: {
+            show: false
+          },
+          data: [
+            { type: 'average', name: '平均值' }
+          ]
+        },
+        itemStyle: {
+          normal: {
+            color: {
+              type: 'linear',
+              x: 0,
+              y: 0,
+              x2: 0,
+              y2: 1,
+              colorStops: [
+                {
+                  offset: 0, color: '#b40113'
+                },
+                {
+                  offset: 1, color: '#ff0000'
+                }
+              ]
+            },
+            barBorderRadius: 4,
           }
         }
       }]

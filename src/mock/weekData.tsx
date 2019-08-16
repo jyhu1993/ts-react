@@ -13,7 +13,7 @@ date[0] = currentMonth + '月' + date[0] + '日';
 
 const weekData = mock({
   date: date,
-  value: [Random.natural(3, 20), Random.natural(3, 20), Random.natural(3, 20), Random.natural(3, 20), Random.natural(3, 20), Random.natural(3, 20), Random.natural(3, 20)]
+  value: [Random.natural(3, 20) as Number, Random.natural(3, 20) as Number, Random.natural(3, 20) as Number, Random.natural(3, 20) as Number, Random.natural(3, 20) as Number, Random.natural(3, 20) as Number, Random.natural(3, 20) as Number]
 });
 
 export default weekData;
